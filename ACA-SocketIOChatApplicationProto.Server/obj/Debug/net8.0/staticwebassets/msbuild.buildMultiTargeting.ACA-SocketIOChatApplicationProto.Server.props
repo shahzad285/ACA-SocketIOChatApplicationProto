@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ACA-SocketIOChatApplicationProto.Server.props" />
+</Project>
