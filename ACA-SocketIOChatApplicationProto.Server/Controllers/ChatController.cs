@@ -65,10 +65,21 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
             return "Something went wrong";
         }
         [HttpGet("GetOnlineUsers")]
-        public async Task<List<string>> GetOnlineUsers(List<int> ids)
+        public async Task<List<GetOnlineUsersDTO>> GetOnlineUsers([FromQuery]List<int> ids)
         {
-            var query = $@"select username, name,IsOnline from Users u Join";
-            return new List<string>(){ ""};
+            List<GetOnlineUsersDTO> onlineUsers = new List<GetOnlineUsersDTO>();
+            GetOnlineUsersDTO getOnlineUsersDTO = null;
+            var query = $@"select u.Id,username, name,IsOnline from Users u Join UserOnlineStatus uos on u.Id=uos.userId where u.Id in ({string.Join(',',ids)}) and expiryTimeStamp>DATEDIFF(SECOND, '1970-01-01', GETUTCDATE())";
+            var res= _databaseContext.ExecuteQuery(query);
+            for (int i=0;i< res.Rows.Count;i++)
+            {
+                getOnlineUsersDTO = new GetOnlineUsersDTO();
+                getOnlineUsersDTO.IsOnline = true;
+                getOnlineUsersDTO.Name = Convert.ToString(res.Rows[i]["Name"]);
+                getOnlineUsersDTO.Id= Convert.ToInt32(res.Rows[i]["Id"]);
+                onlineUsers.Add(getOnlineUsersDTO);
+            }
+            return onlineUsers;
         }
     }
 }
