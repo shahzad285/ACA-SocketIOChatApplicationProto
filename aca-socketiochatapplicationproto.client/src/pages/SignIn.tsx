@@ -1,13 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwtToken');
+        if (token) {
+            const isExpired = checkTokenExpiry(token);
+            if (!isExpired) {
+                // Redirect to a protected route if the token exists and is not expired
+                navigate('/');
+            } else {
+                // Optionally, you can clear the expired token from localStorage
+                localStorage.removeItem('jwtToken');
+            }
+        }
+    }, [navigate]);
 
     const handleSignIn = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle sign in logic here
+        // Handle sign in logic here, such as calling an API and storing the JWT in localStorage
         console.log('Signing in with', { email, password });
+
+        // Mock response for demonstration
+        const mockToken = "your.jwt.token.here"; // Replace with actual JWT token
+        localStorage.setItem('jwtToken', mockToken);
+
+        // Redirect to the protected route after successful sign-in
+        navigate('/');
+    };
+
+    const checkTokenExpiry = (token: string): boolean => {
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const exp = payload.exp;
+            if (exp) {
+                return Date.now() >= exp * 1000;
+            }
+        } catch (e) {
+            console.error('Error decoding token:', e);
+            return true; // Assume the token is expired if an error occurs
+        }
+        return false;
     };
 
     return (

@@ -74,20 +74,25 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-// WebSocket middleware
-app.UseWebSockets();
-
-app.Map("/ws", async context =>
+app.UseEndpoints(endpoints =>
 {
-    if (context.WebSockets.IsWebSocketRequest)
+    endpoints.MapGet("/", async context =>
     {
-        WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
-        await Echo(context, webSocket);
-    }
-    else
+        await context.Response.WriteAsync("WebSocket Server is running...");
+    });
+
+    endpoints.Map("/ws", async context =>
     {
-        context.Response.StatusCode = 400;
-    }
+        if (context.WebSockets.IsWebSocketRequest)
+        {
+            var socket = await context.WebSockets.AcceptWebSocketAsync();
+            await HandleSocketConnection(socket);
+        }
+        else
+        {
+            context.Response.StatusCode = 400;
+        }
+    });
 });
 
 app.UseDefaultFiles();
@@ -102,8 +107,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-
 app.UseAuthorization();
 
 app.MapControllers();
@@ -115,16 +118,17 @@ app.Run();
 
 
 
-
-static async Task Echo(HttpContext context, WebSocket webSocket)
+ async Task HandleSocketConnection(System.Net.WebSockets.WebSocket socket)
 {
     var buffer = new byte[1024 * 4];
-    WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+    var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), System.Threading.CancellationToken.None);
+
     while (!result.CloseStatus.HasValue)
     {
-        var serverMsg = Encoding.UTF8.GetBytes($"Server: {DateTime.Now}");
-        await webSocket.SendAsync(new ArraySegment<byte>(serverMsg, 0, serverMsg.Length), result.MessageType, result.EndOfMessage, CancellationToken.None);
-        result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+        await socket.SendAsync(new ArraySegment<byte>(buffer, 0, result.Count), result.MessageType, result.EndOfMessage, System.Threading.CancellationToken.None);
+
+        result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), System.Threading.CancellationToken.None);
     }
-    await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+
+    await socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, System.Threading.CancellationToken.None);
 }
