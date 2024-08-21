@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B01FFADF-157D-4292-A0EB-C43D2B7174AE}|aca-socketiochatapplicationproto.client\\aca-socketiochatapplicationproto.client.esproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.client\\src\\pages\\signup.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B01FFADF-157D-4292-A0EB-C43D2B7174AE}|aca-socketiochatapplicationproto.client\\aca-socketiochatapplicationproto.client.esproj|solutionrelative:aca-socketiochatapplicationproto.client\\src\\pages\\signup.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B01FFADF-157D-4292-A0EB-C43D2B7174AE}|aca-socketiochatapplicationproto.client\\aca-socketiochatapplicationproto.client.esproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.client\\src\\pages\\signin.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{B01FFADF-157D-4292-A0EB-C43D2B7174AE}|aca-socketiochatapplicationproto.client\\aca-socketiochatapplicationproto.client.esproj|solutionrelative:aca-socketiochatapplicationproto.client\\src\\pages\\signin.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\jwttoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\jwttoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\aca-socketiochatapplicationproto.server.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\aca-socketiochatapplicationproto.server.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\dtos\\getonlineusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\dtos\\getonlineusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -39,16 +23,20 @@
       "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\queries.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\aca-socketiochatapplicationproto.server.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\aca-socketiochatapplicationproto.server.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\dtos\\getonlineusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\dtos\\getonlineusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\dtos\\signindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\dtos\\signindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\dtos\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\dtos\\signupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|solutionrelative:aca-socketiochatapplicationproto.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D1D6888-2BD2-455D-BB47-E5252D431EFD}|ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj|c:\\projects\\personal\\systemdesigncohort\\aca-socketiochatapplicationproto\\aca-socketiochatapplicationproto.server\\queries.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
@@ -67,71 +55,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SignUp.tsx",
-              "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\aca-socketiochatapplicationproto.client\\src\\pages\\SignUp.tsx",
-              "RelativeDocumentMoniker": "aca-socketiochatapplicationproto.client\\src\\pages\\SignUp.tsx",
-              "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\aca-socketiochatapplicationproto.client\\src\\pages\\SignUp.tsx",
-              "RelativeToolTip": "aca-socketiochatapplicationproto.client\\src\\pages\\SignUp.tsx",
-              "ViewState": "AQIAABYAAAAAAAAAAAAuwEEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-08-20T06:11:34.203Z",
+              "Title": "JWTToken.cs",
+              "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\JWTToken.cs",
+              "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\JWTToken.cs",
+              "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\JWTToken.cs",
+              "RelativeToolTip": "ACA-SocketIOChatApplicationProto.Server\\JWTToken.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAIwCwAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T02:05:27.502Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SignIn.tsx",
-              "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\aca-socketiochatapplicationproto.client\\src\\pages\\SignIn.tsx",
-              "RelativeDocumentMoniker": "aca-socketiochatapplicationproto.client\\src\\pages\\SignIn.tsx",
-              "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\aca-socketiochatapplicationproto.client\\src\\pages\\SignIn.tsx",
-              "RelativeToolTip": "aca-socketiochatapplicationproto.client\\src\\pages\\SignIn.tsx",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAuwDEAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-08-20T06:10:48.223Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SignupDTO.cs",
-              "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\DTOs\\SignupDTO.cs",
-              "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\DTOs\\SignupDTO.cs",
-              "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\DTOs\\SignupDTO.cs",
-              "RelativeToolTip": "ACA-SocketIOChatApplicationProto.Server\\DTOs\\SignupDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-11T00:32:39.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "ACA-SocketIOChatApplicationProto.Server\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-10T15:11:41.75Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "ChatController.cs",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\Controllers\\ChatController.cs",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\Controllers\\ChatController.cs",
               "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\Controllers\\ChatController.cs",
               "RelativeToolTip": "ACA-SocketIOChatApplicationProto.Server\\Controllers\\ChatController.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAcwC8AAAAIAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAAAgwDsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-10T15:12:14.282Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Queries.sql ",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\Queries.sql",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\Queries.sql",
@@ -143,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "DatabaseContext.cs",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\DatabaseContext.cs",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\DatabaseContext.cs",
@@ -162,27 +111,27 @@
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\Program.cs",
               "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\Program.cs",
               "RelativeToolTip": "ACA-SocketIOChatApplicationProto.Server\\Program.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAAEYAAAABAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAADUAAABTAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-11T00:39:34.201Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\appsettings.json",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\appsettings.json",
               "ToolTip": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\appsettings.json",
               "RelativeToolTip": "ACA-SocketIOChatApplicationProto.Server\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-08-10T13:45:13.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ACA-SocketIOChatApplicationProto.Server",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\ACA-SocketIOChatApplicationProto.Server.csproj",
@@ -194,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "SigninDTO.cs",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\DTOs\\SigninDTO.cs",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\DTOs\\SigninDTO.cs",
@@ -207,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "GetOnlineUsersDTO.cs",
               "DocumentMoniker": "C:\\Projects\\Personal\\SystemDesignCohort\\ACA-SocketIOChatApplicationProto\\ACA-SocketIOChatApplicationProto.Server\\DTOs\\GetOnlineUsersDTO.cs",
               "RelativeDocumentMoniker": "ACA-SocketIOChatApplicationProto.Server\\DTOs\\GetOnlineUsersDTO.cs",

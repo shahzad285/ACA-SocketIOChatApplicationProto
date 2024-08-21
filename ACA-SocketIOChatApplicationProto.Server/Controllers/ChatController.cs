@@ -1,6 +1,8 @@
 ﻿using ACA_SocketIOChatApplicationProto.Server.DTOs;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace ACA_SocketIOChatApplicationProto.Server.Controllers
 {
@@ -15,6 +17,7 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
             _databaseContext = databaseContext;
 
         }
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<string> Login(SigninDTO signinDTO)
         {
@@ -23,8 +26,14 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
             if (resDT.Rows.Count==0) {
                 return "Username or password is incorrect";
             }
-            return "Loggedin";
+            else
+            {
+                string userId= Convert.ToString(resDT.Rows[0]["Id"]);
+                return JWTToken.GenerateJwtToken(userId);
+            }
+            
         }
+        [AllowAnonymous]
         [HttpPost("Signup")]
         public async Task<string> SignUp(SignupDTO signupDto)
         {
@@ -43,10 +52,12 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
             }
             return "Signup successfull";
         }
+        [Authorize]
         [HttpPost("ImAlive")]
-        public async Task<string> ImAlive(int userId)
+        public async Task<string> ImAlive()
         {
-            userId = 1;
+            var token = GetJwtTokenFromHeader();
+            var userId = JWTToken.GetUserIdFromToken(token);
             var query = $@"IF EXISTS (SELECT 1 FROM UserOnlineStatus WHERE userId ={userId})
                             BEGIN
                              UPDATE UserOnlineStatus SET IsOnline=1,ExpiryTimestamp= (DATEDIFF(SECOND, '1970-01-01', GETUTCDATE())+600)  where userId={userId}
@@ -64,6 +75,7 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
 
             return "Something went wrong";
         }
+        [Authorize]
         [HttpGet("GetOnlineUsers")]
         public async Task<List<GetOnlineUsersDTO>> GetOnlineUsers([FromQuery]List<int> ids)
         {
@@ -80,6 +92,18 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
                 onlineUsers.Add(getOnlineUsersDTO);
             }
             return onlineUsers;
+        }
+
+        private string GetJwtTokenFromHeader()
+        {
+            var authHeader = Request.Headers["Authorization"].FirstOrDefault();
+
+            if (authHeader != null && authHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+            {
+                return authHeader.Substring("Bearer ".Length).Trim();
+            }
+
+            return null;
         }
     }
 }
