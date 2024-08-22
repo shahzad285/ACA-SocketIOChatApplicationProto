@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
-    const [email, setEmail] = useState<string>('');
+    const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -11,26 +12,45 @@ const SignIn: React.FC = () => {
         if (token) {
             const isExpired = checkTokenExpiry(token);
             if (!isExpired) {
-                // Redirect to a protected route if the token exists and is not expired
                 navigate('/');
             } else {
-                // Optionally, you can clear the expired token from localStorage
                 localStorage.removeItem('jwtToken');
             }
         }
     }, [navigate]);
 
-    const handleSignIn = (e: React.FormEvent) => {
+    const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle sign in logic here, such as calling an API and storing the JWT in localStorage
-        console.log('Signing in with', { email, password });
 
-        // Mock response for demonstration
-        const mockToken = "your.jwt.token.here"; // Replace with actual JWT token
-        localStorage.setItem('jwtToken', mockToken);
+        const loginData = {
+            userName: username,
+            password: password
+        };
 
-        // Redirect to the protected route after successful sign-in
-        navigate('/');
+        try {
+            const response = await fetch('https://localhost:7113/Chat/Login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            });
+
+            if (response.ok) {
+                const token = await response.text(); // Expecting a plain token string as the response
+                if (token === "Username or password is incorrect") {
+                    setError(token);
+                } else {
+                    localStorage.setItem('jwtToken', token);
+                    navigate('/');
+                }
+            } else {
+                setError('Login failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setError('An unexpected error occurred. Please try again.');
+        }
     };
 
     const checkTokenExpiry = (token: string): boolean => {
@@ -42,7 +62,7 @@ const SignIn: React.FC = () => {
             }
         } catch (e) {
             console.error('Error decoding token:', e);
-            return true; // Assume the token is expired if an error occurs
+            return true;
         }
         return false;
     };
@@ -52,12 +72,13 @@ const SignIn: React.FC = () => {
             <div className="w-full max-w-md bg-white p-8 rounded shadow-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
                 <form onSubmit={handleSignIn}>
+                    {error && <p className="text-red-500 mb-4">{error}</p>}
                     <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Email</label>
+                        <label className="block text-gray-700 mb-2">Username</label>
                         <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                             className="w-full px-3 py-2 border rounded"
                         />

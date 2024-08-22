@@ -3,12 +3,23 @@ using Microsoft.IdentityModel.Tokens;
 using ACA_SocketIOChatApplicationProto.Server;
 using System.Net.WebSockets;
 using System.Text;
+using SocketIO.Core;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -74,26 +85,7 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/", async context =>
-    {
-        await context.Response.WriteAsync("WebSocket Server is running...");
-    });
 
-    endpoints.Map("/ws", async context =>
-    {
-        if (context.WebSockets.IsWebSocketRequest)
-        {
-            var socket = await context.WebSockets.AcceptWebSocketAsync();
-            await HandleSocketConnection(socket);
-        }
-        else
-        {
-            context.Response.StatusCode = 400;
-        }
-    });
-});
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -105,11 +97,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
+
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
-
 app.MapControllers();
+
+// Configure Socket.IO
+app.UseSocketIo();
+app.MapSocketIoHandler("/socket.io");
 
 app.MapFallbackToFile("/index.html");
 

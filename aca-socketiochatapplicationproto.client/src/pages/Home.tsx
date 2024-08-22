@@ -6,39 +6,52 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     const [socket, setSocket] = useState<Socket | null>(null);
     const [messages, setMessages] = useState<string[]>([]);
+    const [status, setStatus] = useState<string | null>(null);
 
     useEffect(() => {
         const token = localStorage.getItem('jwtToken');
         if (!token || isTokenExpired(token)) {
-            // Redirect to sign-in page if token is missing or expired
             navigate('/signin');
         } else {
-            // Establish Socket.IO connection
-            const newSocket = io('http://localhost:3000', {
-                auth: {
-                    token: `Bearer ${token}`, // Pass the JWT token with the connection
-                },
-            });
+           
 
-            setSocket(newSocket);
+            // Function to call the /Chat/ImAlive API
+            const callIamAlive = async () => {
+                try {
+                    const response = await fetch('https://localhost:7113/Chat/ImAlive', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`, // Include token in headers
+                        },
+                    });
 
-            newSocket.on('connect', () => {
-                console.log('Connected to the server');
-            });
-
-            newSocket.on('disconnect', () => {
-                console.log('Disconnected from the server');
-            });
-
-            // Listen for incoming messages
-            newSocket.on('message', (message: string) => {
-                setMessages((prevMessages) => [...prevMessages, message]);
-            });
-
-            return () => {
-                newSocket.disconnect();
+                    if (response.ok) {
+                        setStatus('Alive status updated');
+                    } else {
+                        console.error('Failed to call ImAlive API:', response.statusText);
+                        setStatus('Failed to update status');
+                    }
+                } catch (error) {
+                    console.error('Error calling ImAlive API:', error);
+                    setStatus('Error updating status');
+                }
             };
+
+            // Call the API every 10 seconds
+            const intervalId = setInterval(callIamAlive, 10000);
+
+            // Call it immediately on component mount
+            callIamAlive();
+            // Cleanup function to clear the interval when the component unmounts
+            return () => {
+                clearInterval(intervalId);
+            };
+
+
         }
+
+
     }, [navigate]);
 
     const isTokenExpired = (token: string): boolean => {
@@ -50,7 +63,7 @@ const Home: React.FC = () => {
             }
         } catch (e) {
             console.error('Error decoding token:', e);
-            return true; // Assume the token is expired if an error occurs
+            return true;
         }
         return false;
     };

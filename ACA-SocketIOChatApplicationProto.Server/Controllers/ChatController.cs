@@ -19,42 +19,43 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
         }
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<string> Login(SigninDTO signinDTO)
+        public async Task<ActionResult> Login(SigninDTO signinDTO)
         {
             var query = $"Select * from Users where username='{signinDTO.UserName}' and password='{signinDTO.Password}'";
-            var resDT=_databaseContext.ExecuteQuery(query);
-            if (resDT.Rows.Count==0) {
-                return "Username or password is incorrect";
+            var resDT = _databaseContext.ExecuteQuery(query);
+            if (resDT.Rows.Count == 0)
+            {
+                return BadRequest("Username or password is incorrect");
             }
             else
             {
-                string userId= Convert.ToString(resDT.Rows[0]["Id"]);
-                return JWTToken.GenerateJwtToken(userId);
+                string userId = Convert.ToString(resDT.Rows[0]["Id"]);
+                return Ok(JWTToken.GenerateJwtToken(userId));
             }
-            
+
         }
         [AllowAnonymous]
         [HttpPost("Signup")]
-        public async Task<string> SignUp(SignupDTO signupDto)
+        public async Task<ActionResult> SignUp(SignupDTO signupDto)
         {
             var query = $"Select * from Users where username='{signupDto.UserName}'";
             var resDT = _databaseContext.ExecuteQuery(query);
             if (resDT.Rows.Count != 0)
             {
-                return "Username already exist";
+                return BadRequest("Username already exist");
             }
 
             query = $"Insert into Users(Username,Name,Password) values('{signupDto.UserName}','{signupDto.Name}','{signupDto.Password}')";
-            int res=_databaseContext.ExecuteNonQuery(query);
+            int res = _databaseContext.ExecuteNonQuery(query);
             if (res == 0)
             {
-                return "Something went wrong";
+                return BadRequest("Something went wrong");
             }
-            return "Signup successfull";
+            return Ok("Signup successfull");
         }
         [Authorize]
         [HttpPost("ImAlive")]
-        public async Task<string> ImAlive()
+        public async Task<ActionResult> ImAlive()
         {
             var token = GetJwtTokenFromHeader();
             var userId = JWTToken.GetUserIdFromToken(token);
@@ -68,30 +69,34 @@ namespace ACA_SocketIOChatApplicationProto.Server.Controllers
                                     VALUES ({userId}, {1},(DATEDIFF(SECOND, '1970-01-01', GETUTCDATE())+600));
                            END";
             var res = _databaseContext.ExecuteNonQuery(query);
-            if (res>0)
+            if (res > 0)
             {
-                return "Alive status updated";
+                return Ok("Alive status updated");
             }
 
-            return "Something went wrong";
+            return BadRequest("Something went wrong");
         }
         [Authorize]
         [HttpGet("GetOnlineUsers")]
-        public async Task<List<GetOnlineUsersDTO>> GetOnlineUsers([FromQuery]List<int> ids)
+        public async Task<ActionResult> GetOnlineUsers()
         {
+            var token = GetJwtTokenFromHeader();
+            var userId = JWTToken.GetUserIdFromToken(token);
             List<GetOnlineUsersDTO> onlineUsers = new List<GetOnlineUsersDTO>();
             GetOnlineUsersDTO getOnlineUsersDTO = null;
-            var query = $@"select u.Id,username, name,IsOnline from Users u Join UserOnlineStatus uos on u.Id=uos.userId where u.Id in ({string.Join(',',ids)}) and expiryTimeStamp>DATEDIFF(SECOND, '1970-01-01', GETUTCDATE())";
-            var res= _databaseContext.ExecuteQuery(query);
-            for (int i=0;i< res.Rows.Count;i++)
+            var query = $@"select u.Id,username, name,Case When expiryTimeStamp>DATEDIFF(SECOND, '1970-01-01', GETUTCDATE()) then 1 else 0 end as IsOnline  from Users u Join UserOnlineStatus uos on u.Id=uos.userId where userid !={userId} order by IsOnline";
+            var res = _databaseContext.ExecuteQuery(query);
+            for (int i = 0; i < res.Rows.Count; i++)
             {
                 getOnlineUsersDTO = new GetOnlineUsersDTO();
-                getOnlineUsersDTO.IsOnline = true;
+                getOnlineUsersDTO.IsOnline = Convert.ToBoolean(res.Rows[i]["IsOnline"]);
                 getOnlineUsersDTO.Name = Convert.ToString(res.Rows[i]["Name"]);
-                getOnlineUsersDTO.Id= Convert.ToInt32(res.Rows[i]["Id"]);
+                getOnlineUsersDTO.Id = Convert.ToInt32(res.Rows[i]["Id"]);
                 onlineUsers.Add(getOnlineUsersDTO);
             }
-            return onlineUsers;
+
+
+            return Ok(onlineUsers);
         }
 
         private string GetJwtTokenFromHeader()
