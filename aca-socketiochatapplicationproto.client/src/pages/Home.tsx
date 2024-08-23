@@ -13,7 +13,27 @@ const Home: React.FC = () => {
         if (!token || isTokenExpired(token)) {
             navigate('/signin');
         } else {
-           
+            // Create a Socket.IO connection with the token
+            const newSocket = io('https://localhost:7113', {
+                transports: ['websocket'],
+                auth: {
+                    token: token
+                }
+            });
+
+            newSocket.on('connect', () => {
+                console.log('Connected to WebSocket server');
+            });
+
+            newSocket.on('message', (message: string) => {
+                setMessages((prevMessages) => [...prevMessages, message]);
+            });
+
+            newSocket.on('disconnect', () => {
+                console.log('Disconnected from WebSocket server');
+            });
+
+            setSocket(newSocket);
 
             // Function to call the /Chat/ImAlive API
             const callIamAlive = async () => {
@@ -39,13 +59,14 @@ const Home: React.FC = () => {
             };
 
             // Call the API every 10 seconds
-            const intervalId = setInterval(callIamAlive, 10000);
+            const intervalId = setInterval(callIamAlive, 8000);
 
             // Call it immediately on component mount
             callIamAlive();
             // Cleanup function to clear the interval when the component unmounts
             return () => {
                 clearInterval(intervalId);
+                newSocket.disconnect();
             };
 
 
