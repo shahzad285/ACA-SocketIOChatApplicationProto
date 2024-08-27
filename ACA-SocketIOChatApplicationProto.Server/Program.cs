@@ -104,7 +104,9 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 
+app.UseMiddleware<AuthenticationMiddleware>();
 // Configure Socket.IO
+app.UseWebSockets();
 app.UseSocketIo();
 app.MapSocketIoHandler("/socket.io");
 
@@ -115,17 +117,3 @@ app.Run();
 
 
 
- async Task HandleSocketConnection(System.Net.WebSockets.WebSocket socket)
-{
-    var buffer = new byte[1024 * 4];
-    var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), System.Threading.CancellationToken.None);
-
-    while (!result.CloseStatus.HasValue)
-    {
-        await socket.SendAsync(new ArraySegment<byte>(buffer, 0, result.Count), result.MessageType, result.EndOfMessage, System.Threading.CancellationToken.None);
-
-        result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), System.Threading.CancellationToken.None);
-    }
-
-    await socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, System.Threading.CancellationToken.None);
-}

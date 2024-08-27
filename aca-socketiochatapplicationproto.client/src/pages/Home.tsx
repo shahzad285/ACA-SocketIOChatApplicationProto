@@ -11,18 +11,29 @@ const Home: React.FC = () => {
     useEffect(() => {
         const token = localStorage.getItem('jwtToken');
         if (!token || isTokenExpired(token)) {
-            navigate('/signin');
+          navigate('/signin');
         } else {
-            // Create a Socket.IO connection with the token
-            const newSocket = io('https://localhost:7113', {
-                transports: ['websocket'],
-                auth: {
-                    token: token
-                }
-            });
+          // Create a Socket.IO connection with the token in the authorization header
+          const newSocket = io('https://localhost:7113', {
+           extraHeaders: {
+           Authorization: token
+            },
+          });
 
             newSocket.on('connect', () => {
                 console.log('Connected to WebSocket server');
+                setStatus('Connected');
+                
+                // Send "ImAlive" status every 8 seconds
+                const intervalId = setInterval(() => {
+                    if (newSocket.connected) {
+                        newSocket.emit('ImAlive', { status: 'I am alive' });
+                        setStatus('Alive status sent');
+                    }
+                }, 8000);
+
+                // Cleanup interval on component unmount
+                return () => clearInterval(intervalId);
             });
 
             newSocket.on('message', (message: string) => {
@@ -31,50 +42,17 @@ const Home: React.FC = () => {
 
             newSocket.on('disconnect', () => {
                 console.log('Disconnected from WebSocket server');
+                setStatus('Disconnected');
             });
 
             setSocket(newSocket);
 
-            // Function to call the /Chat/ImAlive API
-            const callIamAlive = async () => {
-                try {
-                    const response = await fetch('https://localhost:7113/Chat/ImAlive', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`, // Include token in headers
-                        },
-                    });
-
-                    if (response.ok) {
-                        setStatus('Alive status updated');
-                    } else {
-                        console.error('Failed to call ImAlive API:', response.statusText);
-                        setStatus('Failed to update status');
-                    }
-                } catch (error) {
-                    console.error('Error calling ImAlive API:', error);
-                    setStatus('Error updating status');
-                }
-            };
-
-            // Call the API every 10 seconds
-            const intervalId = setInterval(callIamAlive, 8000);
-
-            // Call it immediately on component mount
-            callIamAlive();
-            // Cleanup function to clear the interval when the component unmounts
             return () => {
-                clearInterval(intervalId);
                 newSocket.disconnect();
             };
-
-
         }
-
-
     }, [navigate]);
-
+    
     const isTokenExpired = (token: string): boolean => {
         try {
             const payload = JSON.parse(atob(token.split('.')[1]));

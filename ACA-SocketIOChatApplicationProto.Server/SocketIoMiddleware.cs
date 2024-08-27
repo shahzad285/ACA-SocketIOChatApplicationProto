@@ -15,49 +15,65 @@ namespace ACA_SocketIOChatApplicationProto.Server
             _next = next;
         }
 
-       public async Task InvokeAsync(HttpContext context)
-{
-    if (context.Request.Path.StartsWithSegments("/socket.io"))
-    {
-        // Only needed if using a WebSocket
-        if (context.WebSockets.IsWebSocketRequest)
+        public async Task InvokeAsync(HttpContext context)
         {
-            var socket = await context.WebSockets.AcceptWebSocketAsync();
-            await HandleSocketConnection(socket);
-        }
-        else
-        {
-            // For Socket.IO, you need to access the query parameters for authentication
-            var token = context.Request.Query["token"].FirstOrDefault();
-            
-            if (!string.IsNullOrEmpty(token))
+            if (context.Request.Path.StartsWithSegments("/socket.io"))
             {
-                var userId = JWTToken.GetUserIdFromToken(token);
-                if (userId != null)
+                // Only needed if using a WebSocket
+                if (context.WebSockets.IsWebSocketRequest)
                 {
-                    // Handle the connection and store it
+                    var userId = context.Items.TryGetValue("UserId", out var value) ? value.ToString() : null;
                     var socket = await context.WebSockets.AcceptWebSocketAsync();
-                    StoreConnection(userId, socket);
                     await HandleSocketConnection(socket);
+                }
+                else if (context.Request.Method == "GET")
+                {
+                    // Handle initial Socket.IO handshake
+                    // ...
                 }
                 else
                 {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    await context.Response.WriteAsync("Unauthorized");
+                    // Handle non-WebSocket requests or initial Socket.IO connection attempts
+                    context.Request.Headers.TryGetValue("Authorization", out var token);
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        var userId = JWTToken.GetUserIdFromToken(token);
+                        if (userId != null)
+                        {
+                            // Handle authenticated requests
+                            // You might still need to handle Socket.IO connection upgrades here
+                            if (context.Request.Path.StartsWithSegments("/socket.io"))
+                            {
+                                // Handle Socket.IO handshake or polling
+                                // For example, respond to the initial handshake request
+                                context.Response.StatusCode = StatusCodes.Status200OK;
+                                await context.Response.WriteAsync("Socket.IO connection established");
+                            }
+                            else
+                            {
+                                // Handle other authenticated HTTP requests
+                                context.Response.StatusCode = StatusCodes.Status200OK;
+                                await context.Response.WriteAsync("Authenticated");
+                            }
+                        }
+                        else
+                        {
+                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                            await context.Response.WriteAsync("Unauthorized");
+                        }
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        await context.Response.WriteAsync("Unauthorized");
+                    }
                 }
             }
             else
             {
-                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                await context.Response.WriteAsync("Unauthorized");
+                await _next(context);
             }
         }
-    }
-    else
-    {
-        await _next(context);
-    }
-}
 
         private async Task HandleSocketConnection(System.Net.WebSockets.WebSocket socket)
         {
@@ -103,6 +119,6 @@ namespace ACA_SocketIOChatApplicationProto.Server
     }
 
 
-    
+
 
 }
