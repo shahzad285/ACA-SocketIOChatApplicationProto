@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { io, Socket } from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
@@ -11,21 +11,23 @@ const Home: React.FC = () => {
     useEffect(() => {
         const token = localStorage.getItem('jwtToken');
         if (!token || isTokenExpired(token)) {
-          navigate('/signin');
+            navigate('/signin');
         } else {
-          // Create a Socket.IO connection with the token in the authorization header
-          const newSocket = io('https://localhost:7113', {
-           extraHeaders: {
-           Authorization: token
-            },
-          });
+            // Create a Socket.IO connection with the token in the query string
+            const newSocket = io('https://localhost:7113', {
+                query: {
+                    token: token,
+                },
+                transports: ['websocket'], // Ensure WebSocket is used as the transport method
+            });
 
             newSocket.on('connect', () => {
                 console.log('Connected to WebSocket server');
                 setStatus('Connected');
-                
+
                 // Send "ImAlive" status every 8 seconds
                 const intervalId = setInterval(() => {
+                    console.log('Emitting ImAlive event');  // Log this to verify
                     if (newSocket.connected) {
                         newSocket.emit('ImAlive', { status: 'I am alive' });
                         setStatus('Alive status sent');
@@ -52,7 +54,7 @@ const Home: React.FC = () => {
             };
         }
     }, [navigate]);
-    
+
     const isTokenExpired = (token: string): boolean => {
         try {
             const payload = JSON.parse(atob(token.split('.')[1]));
